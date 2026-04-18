@@ -1,0 +1,59 @@
+@mixin mq($break) {
+    @media (min-width: map-get($breakpoints, $break)) {
+        @content;
+    }
+}
+
+@mixin container($max: $container-max) {
+    max-width: $max;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+@mixin focus-ring {
+    outline: 3px solid rgba($brand, 0.45);
+    outline-offset: 2px;
+}
+
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    padding: .9rem 1.1rem;
+    font-weight: 600;
+    line-height: 1;
+    border-radius: $radius;
+    border: 1px solid transparent;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color $duration ease, border-color $duration ease, color $duration ease, box-shadow $duration ease, transform $duration-fast ease;
+    box-shadow: 0 12px 30px -12px rgba($brand, .5);
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        @include focus-ring;
+    }
+}
+
+@mixin shadow-1 {
+    box-shadow: 0 1px 2px rgba($slate-900, .06), 0 8px 24px -12px $shadow-color;
+}
+
+@mixin glass($alpha: .6) {
+    background-color: rgba($white, $alpha);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+@mixin sr-only {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}

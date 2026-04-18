@@ -1,0 +1,19 @@
+
+import Home from "../pages/Home";
+import Signup from "../pages/Signup"
+import Login from "../pages/Login";
+import { Route,Routes} from 'react-router-dom'
+import Dashboard from "../pages/Dashboard";
+
+const AppRoutes = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  );
+};
+
+export default AppRoutes;

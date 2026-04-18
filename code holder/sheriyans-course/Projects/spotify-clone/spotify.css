@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Belanosima:wght@400;600;700&family=League+Spartan:wght@700&display=swap');
+body{
+    background-color: hsl(0, 1%, 15%);
+ 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+nav{
+    font-family: Belanosima;
+}
+
+nav ul{
+    display: flex;
+    align-items:center;
+    list-style-type: none;
+    height: 40px;
+    background-color:hsl(0, 0%, 12%);
+}
+
+nav ul li{
+    display:flex;
+    align-items:center;
+    color:whitesmoke;
+    padding:10px 10px 10px 10px;
+}
+
+.brand img{
+    height:40px;
+    width:36px;
+    margin: 0;
+    padding:5px;
+    box-shadow:inset;
+    border-radius: 2px;
+}
+
+.brand {
+    font-size: 1.5rem;
+    padding:0px 0px 5px 0px ;
+}
+
+.container{
+    min-height:75vh ;
+    background-color: hsl(0, 1%, 13%);
+    color:white;
+    display: flex;
+    margin: 23px auto;
+    width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: url(duggo2.jpg);
+    background-position: 40% 35%;
+
+    background-repeat: no-repeat;
+}
+
+.bottom{
+   height:50px;
+   background-color:hsl(0, 0%, 12%); 
+   color:aliceblue;
+   bottom:0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;;  
+}
+
+#myProgressBar{
+    width:80vw;
+    cursor: pointer;
+  
+}
+
+.icons{
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  margin: 1px;
+  cursor: pointer;
+}
+
+.songitemcontainer{
+    margin-top: 34px;
+    padding: 2px;
+}
+
+.songItem{
+  height: 40px;
+  margin: 12px;
+  display: flex;
+  background-color: hsl(0, 1%, 35%);
+  justify-content: space-between;
+  align-items:center;
+  border-radius:20px; ;
+}
+
+.songItem img{
+    width:40px;
+    height:40px;
+    border-radius: 20px;
+    position:relative;
+
+}
+
+.timestamp{
+   margin: 0 23px ;
+}
+
+.timestamp i {
+    cursor: pointer;
+}
+
+#gif{
+    justify-content: space-between;
+}
