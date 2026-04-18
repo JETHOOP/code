@@ -1,0 +1,24 @@
+{
+  "name": "resume-builder-backend",
+  "version": "1.0.0",
+  "description": "Backend for Resume Builder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.6",
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "html2canvas": "^1.4.1",
+    "jsonwebtoken": "^9.0.3",
+    "jspdf": "^4.2.0",
+    "lucide-react": "^0.575.0",
+    "mongoose": "^8.3.4",
+    "react-router-dom": "^7.13.1",
+    "uuid": "^13.0.0"
+  }
+}

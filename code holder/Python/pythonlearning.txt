@@ -1,0 +1,535 @@
+#string methods
+.upper()
+.lower()
+.replace('a','b') => in this thing it will find all the a from string and replace it with b
+len() => gaves the length of passed thing
+
+# lists 
+skills = ["python" , "numpy" , 'pandas']
+skills.append("matplotlib") => it adds the things in list (array)
+print(skills[0]) => gaves the first item
+print(skills[-1]) => gaves the last item and also if we make it -2 then it will gave second last value
+
+
+#if-else
+marks = 95
+if(marks>90):
+    print("A grade")
+elif(marks>80):
+    print("B grade")
+else:print("C grade")
+
+#for loop
+for s in skills:
+    print(s)
+
+# #while loop
+count = 1
+while(count<=5):
+    print(count)
+    count+=1
+
+
+# Functions
+def greet(name):
+    return f"hello {name} , welcome to your ml journey"
+
+def add(a,b):
+    return a+b
+
+def is_even(num):
+    return num%2 == 0
+
+print(greet("Mohit")) 
+print(add(-2,5)) => This will work and gave outpu as 3
+print(is_even(4))
+
+
+-----------------day-2---------------------
+
+#dictionary
+student = {
+    "name": "john doe",
+    "age": 25,
+    "skills": ["python", "data analysis", "machine learning"],
+    "is_enrolled": True
+}
+
+print(student['name'])
+print(student.get("gpa" , "not found")) 
+# not found is the default value if the key is not present in the dictionary
+
+# adding and updating
+student["GPA"] = 3.8
+student["age"] = 22
+print(student.get("GPA" , "not found"))
+#3.8
+print(student.get("age" , "not found"))
+#22
+
+#deleting
+del student["is_enrolled"]
+
+print(student)
+{'name': 'john doe', 'age': 22, 'skills': ['python', 'data analysis', 'machine learning'], 'GPA': 3.8}
+
+#loop through object
+for k , v in student.items():
+    print(f"{k} : {v}")
+
+#check weather key exists
+if "name" in student:
+    print("name is present in the student dictionary")
+
+
+# *args — accept any number of arguments
+def total_score(*scores):
+    return sum(scores)
+
+print(total_score(88, 95, 72, 65))    # 320
+
+# **kwargs — accept any number of keyword arguments
+def display_profile(**info):
+    for key, value in info.items():
+        print(f"{key}: {value}")
+
+display_profile(name="Mohit", age=21, goal="AI Engineer")
+
+#lambda functions
+square = lambda x : x**2
+print(square(5))  # 25
+
+
+---------------------day-3-------------------------------
+
+#numpy
+import numpy as np
+
+a = np.array([1,2,3,4,5])  [1 2 3 4 5]
+b = np.zeros(5) [0. 0. 0. 0. 0.]
+c = np.ones(4)  [1. 1. 1. 1.]
+d = np.arange(0,100,10)  [ 0 10 20 30 40 50 60 70 80 90]
+e = np.linspace(0,1,10)[0.         0.11111111 0.22222222 0.33333333 0.44444444 0.55555556 0.66666667 0.77777778 0.88888889 1.        ]
+f = np.random.randint(0,100,size=100)[29 60 29 11  8 24 97 74  7 78 61 27 16 75 97 12 54 69 24 64 72 72 93 29  9 12 46 90 57 46 26 60 28 34 35 57 53 93 70 79 53 57 31 44 15 42 70 97 87 77 82 61 28 44 81 29 61 31 25 78 54 28 58 22 85  7 65 23 79 94 99 78 99 35 70 14 86 12 69 56 76 48 41 16 45 44 76 42 50 34 54 82 24  4 30 99  2 21 14 65]
+
+# Array properties — always check these first on any dataset
+arr = np.array([10,20,30,40,50])
+print(arr.shape) (5,)
+print(arr.ndim) 1
+print(arr.dtype) int64
+print(arr.size) 5
+
+# Indexing and slicing — same logic as Python lists but more powerful
+arr = np.array([10, 20, 30, 40, 50, 60, 70])
+
+print(arr[0])         # 10 — first element
+print(arr[-1])        # 70 — last element
+print(arr[1:4])       # [20 30 40] — slice
+print(arr[::2])       # [10 30 50 70] — every 2nd element
+print(arr[::-1])      # [70 60 50 40 30 20 10] — reversed
+
+# 2D arrays — think of these as your dataset table
+matrix = np.array([
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+])
+
+print(matrix.shape)    # (3, 3) — 3 rows, 3 columns
+print(matrix.ndim)     # 2
+
+# Accessing elements
+print(matrix[0])           # [1 2 3] — first row
+print(matrix[0][1])        # 2 — row 0, column 1
+print(matrix[1, 2])        # 6 — row 1, column 2 (cleaner syntax)
+
+# Slicing 2D arrays
+print(matrix[:, 0])        # [1 4 7] — entire first column
+print(matrix[0, :])        # [1 2 3] — entire first row
+print(matrix[:2, :2])      # top-left 2x2 block
+
+# Reshaping — critical in ML, you'll use this constantly
+arr = np.arange(1, 13)       # [1 2 3 4 5 6 7 8 9 10 11 12]
+print(arr.shape)             # (12,)
+
+matrix = arr.reshape(3, 4)   # reshape to 3 rows, 4 cols
+print(matrix)
+print(matrix.shape)          # (3, 4)
+
+flat = matrix.flatten()      # back to 1D
+print(flat)
+
+# Math operations on matrices
+a = np.array([[1, 2], [3, 4]])
+b = np.array([[5, 6], [7, 8]])
+
+print(a + b)          # element-wise addition
+print(a * b)          # element-wise multiplication
+print(a @ b)          # matrix multiplication (dot product) — used in neural nets
+print(a.T)            # transpose — flips rows and columns
+
+# Axis operations — rows vs columns
+scores = np.array([
+    [85, 92, 78],    # Student 1: Math, Python, Stats
+    [95, 88, 91],    # Student 2
+    [73, 87, 69]     # Student 3
+])
+
+print(np.mean(scores, axis=0))   # mean per subject (column-wise)
+print(np.mean(scores, axis=1))   # mean per student (row-wise)
+print(np.sum(scores, axis=1))    # total score per student
+
+# Boolean masking — filter arrays with conditions
+scores = np.array([85, 92, 78, 95, 88, 73, 91, 67])
+
+# Create a boolean mask
+mask = scores > 85
+print(mask)           # [False  True False  True  True False  True False]
+
+# Apply the mask — returns only matching values
+print(scores[mask])   # [92 95 88 91]
+
+# One-liner version
+print(scores[scores > 85])    # same result
+print(scores[scores < 75])    # [73 67]
+
+# Multiple conditions
+print(scores[(scores > 80) & (scores < 93)])    # [85 92 88 91]
+
+import pandas as pd
+import numpy as np
+
+# Two core data structures in Pandas
+# 1. Series — one column
+series = pd.Series([85, 92, 78, 95, 88])
+print(series)
+print(series[0])          # 85
+print(series.mean())      # 87.6
+
+-----------------DAY-4---------------------
+# Named series
+marks = pd.Series([85, 92, 78], index=["Math", "Python", "Stats"])
+print(marks["Python"])    # 92
+print(marks.max())        # 92
+
+# 2. DataFrame — the main one, think of it as an Excel sheet
+data = {
+    "name":    ["Mohit", "Aryan", "Riya", "Priya", "Rahul"],
+    "age":     [21, 22, 20, 23, 21],
+    "score":   [88, 95, 72, 91, 65],
+    "subject": ["Python", "ML", "Stats", "DL", "Python"],
+    "passed":  [True, True, False, True, False]
+}
+
+df = pd.DataFrame(data)
+print(df)
+
+# First things you do with ANY new dataset
+print(df.shape)           # (5, 5) — rows, columns
+print(df.dtypes)          # data type of each column
+print(df.columns)         # column names
+print(df.head(3))         # first 3 rows
+print(df.tail(2))         # last 2 rows
+print(df.info())          # summary — nulls, types, memory
+print(df.describe())      # stats — mean, std, min, max per column
+
+# Load directly from URL — no download needed
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+df = pd.read_csv(url)
+
+print(df.shape)           # (891, 12)
+print(df.head())
+print(df.info())
+print(df.describe())
+
+# Selecting columns
+print(df["Age"])                        # single column → Series
+print(df[["Age", "Fare", "Survived"]]) # multiple columns → DataFrame
+
+# Selecting rows by index
+print(df.iloc[0])         # first row
+print(df.iloc[0:5])       # first 5 rows
+print(df.iloc[0, 2])      # row 0, column 2
+
+# Selecting by label
+print(df.loc[0, "Age"])             # row 0, Age column
+print(df.loc[0:4, ["Age", "Fare"]]) # rows 0-4, two columns
+
+# Filtering rows — this is where Pandas shines
+# Survivors only
+survivors = df[df["Survived"] == 1]
+print(f"Survivors: {len(survivors)}")
+
+# First class passengers
+first_class = df[df["Pclass"] == 1]
+print(f"First class: {len(first_class)}")
+
+# Multiple conditions
+rich_survivors = df[(df["Survived"] == 1) & (df["Pclass"] == 1)]
+print(f"First class survivors: {len(rich_survivors)}")
+
+# Women who survived
+women_survived = df[(df["Survived"] == 1) & (df["Sex"] == "female")]
+print(f"Women who survived: {len(women_survived)}")
+
+# Passengers older than 50
+older = df[df["Age"] > 50]
+print(f"Passengers over 50: {len(older)}")  
+
+# Sorting
+print(df.sort_values("Age").head())                    # youngest first
+print(df.sort_values("Fare", ascending=False).head())  # most expensive first
+
+# Sort by multiple columns
+print(df.sort_values(["Pclass", "Age"]).head(10))
+
+# Groupby — one of the most powerful Pandas tools
+# Average survival rate by class
+print(df.groupby("Pclass")["Survived"].mean())
+
+# Average age by class
+print(df.groupby("Pclass")["Age"].mean())
+
+# Multiple aggregations at once
+print(df.groupby("Pclass").agg({
+    "Survived": "mean",
+    "Age": "mean",
+    "Fare": "mean"
+}))
+
+# Survival rate by gender — famous Titanic insight
+print(df.groupby("Sex")["Survived"].mean())
+# Women: ~74% survival, Men: ~19% survival
+
+# Value counts — frequency of each category
+print(df["Pclass"].value_counts())
+print(df["Sex"].value_counts())
+print(df["Survived"].value_counts())
+
+# Percentage
+print(df["Survived"].value_counts(normalize=True))
+
+# Check for missing values — always do this first
+print(df.isnull().sum())
+# Age      177  ← 177 missing
+# Cabin    687  ← way too many missing
+# Embarked   2  ← only 2 missing
+
+# Handling missing values
+
+# Option 1 — Drop rows with any missing values (careful — you lose data)
+df_dropped = df.dropna()
+print(df_dropped.shape)    # much smaller now
+
+# Option 2 — Drop columns with too many missing values
+df_no_cabin = df.drop(columns=["Cabin"])
+
+# Option 3 — Fill with mean (best for numerical columns)
+df["Age"] = df["Age"].fillna(df["Age"].mean())
+
+# Option 4 — Fill with median (better when outliers exist)
+df["Age"] = df["Age"].fillna(df["Age"].median())
+
+# Option 5 — Fill with mode (best for categorical columns)
+df["Embarked"] = df["Embarked"].fillna(df["Embarked"].mode()[0])
+
+# Check again — should be 0 now for Age and Embarked
+print(df[["Age", "Embarked"]].isnull().sum())
+
+# Creating new columns — feature engineering starts here
+# Extract title from name
+df["Title"] = df["Name"].str.extract(r" ([A-Za-z]+)\.")
+print(df["Title"].value_counts())
+
+# Age groups
+df["AgeGroup"] = pd.cut(df["Age"],
+    bins=[0, 12, 18, 35, 60, 100],
+    labels=["Child", "Teen", "Young Adult", "Adult", "Senior"]
+)
+print(df["AgeGroup"].value_counts())
+
+# Family size
+df["FamilySize"] = df["SibSp"] + df["Parch"] + 1
+print(df["FamilySize"].value_counts())
+
+# Renaming and dropping columns
+df = df.rename(columns={"Survived": "survived", "Pclass": "class"})
+df = df.drop(columns=["Ticket", "Cabin", "Name"])
+print(df.columns)
+
+# Changing data types
+df["survived"] = df["survived"].astype(int)
+df["class"] = df["class"].astype(str)
+print(df.dtypes)    
+
+----------------DAY-5--------------------------
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+# The anatomy of a matplotlib plot
+# Figure = the entire canvas
+# Axes = the actual plot area inside the canvas
+# Always create figure + axes together
+
+fig, ax = plt.subplots(figsize=(8, 5))   # width=8, height=5 inches
+ax.plot([1, 2, 3, 4, 5], [10, 25, 15, 35, 20])
+ax.set_title("My First Plot")
+ax.set_xlabel("X Axis")
+ax.set_ylabel("Y Axis")
+plt.show()
+
+# Line plot — trends over time
+days = [1, 2, 3, 4, 5, 6, 7]
+scores = [65, 70, 68, 75, 80, 78, 85]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.plot(days, scores, color="blue", linewidth=2,
+        marker="o", markersize=6, linestyle="--", label="Score")
+ax.set_title("Weekly Progress", fontsize=14)
+ax.set_xlabel("Day")
+ax.set_ylabel("Score")
+ax.legend()
+ax.grid(True, alpha=0.3)    # alpha controls transparency
+plt.tight_layout()
+plt.show()
+
+# Multiple lines on same plot
+days = np.arange(1, 8)
+math   = [65, 70, 68, 75, 80, 78, 85]
+python = [70, 75, 80, 78, 85, 88, 92]
+stats  = [60, 63, 65, 70, 68, 72, 75]
+
+fig, ax = plt.subplots(figsize=(9, 5))
+ax.plot(days, math,   marker="o", label="Math",   color="blue")
+ax.plot(days, python, marker="s", label="Python", color="green")
+ax.plot(days, stats,  marker="^", label="Stats",  color="red")
+ax.set_title("Subject Progress Over 7 Days")
+ax.set_xlabel("Day")
+ax.set_ylabel("Score")
+ax.legend()
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+# Bar chart — comparing categories
+subjects  = ["Math", "Python", "Stats", "English", "ML"]
+avg_score = [78, 92, 74, 85, 88]
+colors    = ["#3498db", "#2ecc71", "#e74c3c", "#f39c12", "#9b59b6"]
+
+fig, ax = plt.subplots(figsize=(8, 5))
+bars = ax.bar(subjects, avg_score, color=colors, width=0.5, edgecolor="white")
+
+# Add value labels on top of each bar
+for bar, score in zip(bars, avg_score):
+    ax.text(bar.get_x() + bar.get_width() / 2,
+            bar.get_height() + 0.5,
+            str(score), ha="center", va="bottom", fontsize=11)
+
+ax.set_title("Average Score by Subject", fontsize=14)
+ax.set_ylabel("Score")
+ax.set_ylim(0, 105)
+ax.axhline(y=75, color="red", linestyle="--", alpha=0.6, label="Pass mark")
+ax.legend()
+plt.tight_layout()
+plt.show()
+
+# Scatter plot — relationship between two variables
+study_hours = np.random.uniform(1, 10, 50)
+exam_scores = study_hours * 7 + np.random.normal(0, 5, 50)   # score = hours*7 + noise
+
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.scatter(study_hours, exam_scores, color="#e74c3c", alpha=0.7, s=60)
+ax.set_title("Study Hours vs Exam Score")
+ax.set_xlabel("Study Hours")
+ax.set_ylabel("Exam Score")
+ax.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+
+--seaborn--
+import seaborn as sns
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load Titanic
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
+df = pd.read_csv(url)
+
+# Set a clean style — do this once at the top of every notebook
+sns.set_theme(style="darkgrid", palette="muted")
+
+# Countplot — frequency of categories
+fig, ax = plt.subplots(figsize=(7, 5))
+sns.countplot(data=df, x="Survived", hue="Sex", ax=ax)
+ax.set_title("Survival Count by Gender")
+ax.set_xticklabels(["Died", "Survived"])
+plt.tight_layout()
+plt.show()
+# You can instantly see women survived far more than men
+
+# Distribution plot — age distribution of survivors vs non-survivors
+fig, ax = plt.subplots(figsize=(9, 5))
+sns.histplot(data=df, x="Age", hue="Survived", bins=30,
+             kde=True, ax=ax, alpha=0.6)
+ax.set_title("Age Distribution — Survivors vs Non-Survivors")
+ax.set_xlabel("Age")
+plt.tight_layout()
+plt.show()
+
+# Boxplot — spot outliers and compare distributions
+fig, ax = plt.subplots(figsize=(8, 5))
+sns.boxplot(data=df, x="Pclass", y="Age", palette="Set2", ax=ax)
+ax.set_title("Age Distribution by Passenger Class")
+ax.set_xlabel("Passenger Class")
+ax.set_ylabel("Age")
+plt.tight_layout()
+plt.show()
+# First class passengers tend to be older
+
+# Violin plot — like boxplot but shows full distribution shape
+fig, ax = plt.subplots(figsize=(8, 5))
+sns.violinplot(data=df, x="Pclass", y="Fare",
+               palette="muted", ax=ax)
+ax.set_title("Fare Distribution by Class")
+ax.set_ylim(0, 300)    # cap y axis — extreme outliers skew the chart
+plt.tight_layout()
+plt.show()
+
+# Barplot — mean value with confidence interval
+fig, ax = plt.subplots(figsize=(7, 5))
+sns.barplot(data=df, x="Pclass", y="Survived",
+            palette="Blues_d", ax=ax)
+ax.set_title("Survival Rate by Passenger Class")
+ax.set_xlabel("Passenger Class")
+ax.set_ylabel("Survival Rate")
+plt.tight_layout()
+plt.show()
+# First class had ~63% survival, third class ~24%
+
+# Heatmap — correlation between numerical columns
+# Correlation tells you how much two variables move together
+# +1 = perfect positive, -1 = perfect negative, 0 = no relationship
+
+numeric_cols = df[["Survived", "Pclass", "Age", "SibSp", "Parch", "Fare"]]
+corr_matrix = numeric_cols.corr()
+
+fig, ax = plt.subplots(figsize=(8, 6))
+sns.heatmap(corr_matrix, annot=True, fmt=".2f",
+            cmap="coolwarm", center=0,
+            linewidths=0.5, ax=ax)
+ax.set_title("Correlation Heatmap — Titanic Dataset")
+plt.tight_layout()
+plt.show()
+# Notice: Pclass negatively correlated with Survived (-0.34)
+# Higher class number = lower class = lower survival
+
+# Pairplot — scatter plots for every pair of numerical columns
+# Great for spotting relationships quickly across the whole dataset
+cols = ["Survived", "Pclass", "Age", "Fare"]
+sns.pairplot(df[cols].dropna(), hue="Survived",
+             plot_kws={"alpha": 0.5})
+plt.suptitle("Pairplot — Titanic", y=1.02)
+plt.show()
+# This takes a few seconds — it creates many plots at once

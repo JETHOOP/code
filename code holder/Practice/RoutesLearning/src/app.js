@@ -1,0 +1,14 @@
+const express = require('express')
+const app = express()
+const userRoutes = require('./routes/user.routes')
+const connectToDb = require('./db/db')
+
+connectToDb()
+
+app.use(express.json())
+app.use('/auth' , userRoutes)
+app.get('/', (req, res) => {
+    res.send("Hello from backend")
+})
+
+module.exports = app
